@@ -23,7 +23,7 @@ class UsersListView(ListAPIView):
 class FollowView(APIView):
     def get(self, request, username):
         try:
-            user = UserModel.objects.get(username=username),
+            user = (UserModel.objects.get(username=username),)
             request.user.follow(user)
             return Response(status=status.HTTP_204_NO_CONTENT)
         except UserModel.DoesNotExist:
