@@ -1,0 +1,9 @@
+.circleci
+database
+env
+venv
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
+htmlconv

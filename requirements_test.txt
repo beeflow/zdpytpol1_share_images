@@ -1,0 +1,7 @@
+-r requirements.txt
+Faker==4.1.3
+mock==4.0.2
+django-fake-model==0.1.4
+coverage==5.3
+django-override-storage==0.3.0
+unittest-data-provider==1.0.1
