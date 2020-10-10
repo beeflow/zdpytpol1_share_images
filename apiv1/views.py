@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model
 from rest_framework import permissions
-from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 
-from apiv1.serializers.userserializer import UserSerializer, RegisterUserSerializer
+from apiv1.serializers.userserializer import RegisterUserSerializer, UserSerializer
 
 
 class CreateUserView(CreateAPIView):

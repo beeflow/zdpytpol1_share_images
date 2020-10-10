@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "djoser",
     "rest_framework",
     "rest_framework.authtoken",
-    "apiv1"
+    "apiv1",
 ]
 
 MIDDLEWARE = [
@@ -120,7 +120,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
-    )
+    ),
 }
 
 # Static files (CSS, JavaScript, Images)
