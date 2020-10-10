@@ -17,7 +17,7 @@ configuration in `settings.py` file. Please read the documentation on https://dj
 
 **Development**
 1. copy `.env.dist` to `.env` and set all variables 
-1. copy `local_dist.py` to `local.py` in `shareimages` folder.
+1. copy `local_dist.py` to `local.py` in `share_images` folder.
 1. run `pip -r requirements_devel.txt`
 
 **Testing**
