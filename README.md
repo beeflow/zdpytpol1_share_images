@@ -6,7 +6,7 @@ There will be a new user automatically created with username `admin` and passwor
 If container with postgres will start after container with application, you need to start postgres first:
 `docker-compose up -d postgres` and then` docker-compose up -d app`
 
-**Remte storage**
+**Remote storage**
 
 Application is repared to work with Amazon S3. If you need a different storage, you need to modify the 
 configuration in `settings.py` file. Please read the documentation on https://django-storages.readthedocs.io/en/latest/
