@@ -15,5 +15,7 @@ urlpatterns = [
     # path("posts/upload_image/<filename>", views.AddPostView.as_view(), name="posts_add_image"),
     path("posts/add_caption/<pk>", views.AddPostCaptionView.as_view(), name="posts_add_caption"),
     path("posts/like/<pk>", views.LikePostView.as_view(), name="posts_like"),
-    path("posts/unlike/<pk>", views.UnlikePostView.as_view(), name="post_unlike"),
+    path("posts/unlike/<pk>", views.UnlikePostView.as_view(), name="posts_unlike"),
+    path("posts/all", views.PostsListView.as_view(), name="posts_all"),
+    path("posts/", views.UserPostsListView.as_view(), name="posts_user"),
 ]

@@ -6,6 +6,7 @@ from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apiv1.serializers.postserializer import PostSerializer
 from apiv1.serializers.userserializer import RegisterUserSerializer, UserSerializer
 from posts.models import Post
 
@@ -87,3 +88,15 @@ class UnlikePostView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
         except ValidationError as error:
             return Response({"error": error}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PostsListView(ListAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all().order_by("likes")
+
+
+class UserPostsListView(ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        return Post.objects.filter(owner=self.request.user).order_by("-created_at")
