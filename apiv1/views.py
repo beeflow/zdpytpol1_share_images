@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from apiv1.serializers.postserializer import PostSerializer
 from apiv1.serializers.userserializer import RegisterUserSerializer, UserSerializer
 from posts.models import Post
+from users.models import Follower
 
 UserModel = get_user_model()
 
@@ -100,3 +101,20 @@ class UserPostsListView(ListAPIView):
 
     def get_queryset(self):
         return Post.objects.filter(owner=self.request.user).order_by("-created_at")
+
+
+class UserFollowedPostListView(ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        user_followed = [followed.follow for followed in Follower.objects.filter(user=self.request.user)]
+        return Post.objects.filter(owner__in=user_followed).order_by("-created_at")
+
+        ## 1. list uzytkownikow, ktorych sledzimy(obserwujemy)
+        # users_followed = []
+        ## # 1a. lista obiektow z modelu follower, gdzie w atrybucie user znajduje sie zalogowany uzytkownik
+        # for followed in Follower.objects.filter(user=self.request.user):
+        #     ## 1b. z kazdego obiketu follower wybieramy uzytkownika z atrybutu follow
+        #     users_followed.append(followed.follow)
+        # ## 2. lista postow, ktorych wlasciciel znajduje sie na liscie obserwowanmych (z pkt 1)
+        # return Post.objects.filter(owner__in=users_followed).order_by("-created_at")

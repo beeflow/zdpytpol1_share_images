@@ -18,4 +18,5 @@ urlpatterns = [
     path("posts/unlike/<pk>", views.UnlikePostView.as_view(), name="posts_unlike"),
     path("posts/all", views.PostsListView.as_view(), name="posts_all"),
     path("posts/", views.UserPostsListView.as_view(), name="posts_user"),
+    path("posts/followed", views.UserFollowedPostListView.as_view(), name="posts_followed"),
 ]
