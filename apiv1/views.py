@@ -49,3 +49,14 @@ class AddPostView(APIView):
         file = request.data["file"]
         post = Post.objects.create(image=file, owner=request.user)
         return Response({"id": str(post.id)}, status=status.HTTP_201_CREATED)
+
+
+class AddPostCaptionView(APIView):
+    def put(self, request, pk):
+        try:
+            post = Post.objects.get(pk=pk, owner=request.user)
+            post.caption = request.POST.get("caption")
+            post.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
