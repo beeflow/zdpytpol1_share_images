@@ -60,3 +60,23 @@ class AddPostCaptionView(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class LikePostView(APIView):
+    def get(self, request, pk):
+        try:
+            post = Post.objects.get(pk=pk)
+            post.like(request.user)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class UnlikePostView(APIView):
+    def get(self, request, pk):
+        try:
+            post = Post.objects.get(pk=pk)
+            post.unlike(request.user)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
