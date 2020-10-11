@@ -110,9 +110,9 @@ class UserFollowedPostListView(ListAPIView):
         user_followed = [followed.follow for followed in Follower.objects.filter(user=self.request.user)]
         return Post.objects.filter(owner__in=user_followed).order_by("-created_at")
 
-        ## 1. list uzytkownikow, ktorych sledzimy(obserwujemy)
+        # 1. list uzytkownikow, ktorych sledzimy(obserwujemy)
         # users_followed = []
-        ## # 1a. lista obiektow z modelu follower, gdzie w atrybucie user znajduje sie zalogowany uzytkownik
+        # # 1a. lista obiektow z modelu follower, gdzie w atrybucie user znajduje sie zalogowany uzytkownik
         # for followed in Follower.objects.filter(user=self.request.user):
         #     ## 1b. z kazdego obiketu follower wybieramy uzytkownika z atrybutu follow
         #     users_followed.append(followed.follow)

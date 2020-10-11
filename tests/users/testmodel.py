@@ -22,6 +22,6 @@ class UserTest(TestCase):
         self.assertEqual(self.user_b.followers.count(), 1)
         self.assertEqual(self.user_b.followed.count(), 0)
 
-    def test_shou_raise_integrity_error(self):
+    def test_shoud_raise_integrity_error(self):
         self.user_a.follow(self.user_b)
         self.user_a.follow(self.user_b)
