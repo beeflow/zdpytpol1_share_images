@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from rest_framework import permissions, status
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.parsers import FileUploadParser
@@ -60,6 +61,8 @@ class AddPostCaptionView(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        except ValidationError as error:
+            return Response({"error": error}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LikePostView(APIView):
@@ -70,6 +73,8 @@ class LikePostView(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        except ValidationError as error:
+            return Response({"error": error}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UnlikePostView(APIView):
@@ -80,3 +85,5 @@ class UnlikePostView(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        except ValidationError as error:
+            return Response({"error": error}, status=status.HTTP_400_BAD_REQUEST)
